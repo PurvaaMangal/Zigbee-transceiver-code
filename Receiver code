@@ -1,0 +1,23 @@
+//ZIGBEE RECEIVER SIDE CODE:
+#include <SoftwareSerial.h>
+SoftwareSerial xbee(2, 3); // RX, TX
+void setup() {
+  Serial.begin(9600);
+  xbee.begin(9600);  
+}
+void loop() {
+  if (xbee.available()) {
+    char data = xbee.read() ;
+    Serial.write(data);
+    if (data == '1'){
+    xbee.write("Go left\0");
+    }
+    else if (data == '2'){
+    xbee.write("Go right\0");
+    }
+  else if (data == '3'){
+    xbee.write("Go straight\0");
+    }
+  
+}
+}
